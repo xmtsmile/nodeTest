@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>登录与注册</title>
+    <link href="stylesheets/base.css" type="text/css" rel="stylesheet"/>
+    <link href="/stylesheets/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+    <link href="stylesheets/style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<div class="cd-user-modal is-visible">
+    <div class="theme">
+        Student Registration System
+    </div>
+    <br />
+    <div class="cd-user-modal-container">
+        <ul class="cd-switcher">
+            <li><a href="#" class="selected">用户登录</a></li>
+            <li><a href="#" >注册新用户</a></li>
+        </ul>
+
+        <div id="cd-login" class="is-selected"> <!-- 登录表单 -->
+            <div class="cd-form" >
+                <p class="fieldset">
+                    <label class="image-replace cd-username" for="signin-username">用户名</label>
+                    <input class="full-width has-padding has-border" id="signin-username" type="text" placeholder="输入用户名">
+                </p>
+
+                <p class="fieldset">
+                    <label class="image-replace cd-password" for="signin-password">密码</label>
+                    <input class="full-width has-padding has-border" id="signin-password" type="password"  placeholder="输入密码">
+                </p>
+
+                <p class="fieldset">
+                    <input type="checkbox" id="remember-me" checked>
+                    <label for="remember-me">记住登录状态</label>
+                    <label for="errors" id="error"></label>
+                </p>
+
+                <p class="fieldset">
+                    <input id="login" class="full-width2" type="submit" value="登 录">
+                </p>
+            </div>
+        </div>
+
+        <div id="cd-signup"> <!-- 注册表单 -->
+            <div class="cd-form" >
+                <p class="fieldset">
+                    <label class="image-replace cd-username" for="signup-username">用户名</label>
+                    <input class="full-width has-padding has-border" id="signup-username" type="text" placeholder="输入用户名" name="username">
+                </p>
+
+                <p class="fieldset">
+                    <label class="image-replace cd-password" for="signup-password">密码</label>
+                    <input class="full-width has-padding has-border" id="signup-password" type="password"  placeholder="输入密码" name="password">
+                </p>
+
+                <p class="fieldset">
+                    <label class="image-replace cd-username" for="signup-nickName">真实姓名</label>
+                    <input class="full-width has-padding has-border" id="signup-nickName" type="text" placeholder="输入真实姓名" name="nickName">
+                </p>
+
+                <p class="fieldset">
+                    <input type="checkbox" id="accept-terms" checked="true">
+                    <label for="accept-terms">我已阅读并同意 <a href="" data-toggle="modal" data-target="#myModal">用户协议</a></label>
+                    <label for="accept-terms" id="register_error"></label>
+                </p>
+
+                <p class="fieldset">
+                    <input class="full-width2" type="submit" id="register" value="注册新用户">
+                </p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    用户协议
+                </h4>
+            </div>
+            <div class="modal-body">
+                (1)本系统仅用于学生选课
+                (2)禁止模仿、用于其他用途
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+<script src="javascripts/jquery.min.js"></script>
+<script src="javascripts/bootstrap.min.js"></script>
+<script src="javascripts/login.js"></script>
+</body>
+</html>

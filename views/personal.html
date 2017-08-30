@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta charset="UTF-8">
+    <title>personal</title>
+    <link href="stylesheets/base.css" type="text/css" rel="stylesheet"/>
+    <link href="/stylesheets/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+    <link href="/stylesheets/font-awesome.css" rel="stylesheet"/>
+    <link href="/stylesheets/home.css" rel="stylesheet"/>
+</head>
+<body>
+<div id="personalCenter">
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">StudentSelect</a>
+            </div>
+            <div class="user-info">
+                <ul class="nav navbar-top-links navbar-right">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                            <i class="fa fa-user fa-fw"></i>
+                            <span style="color: #000; margin-right: 3px;"><%= user%></span>
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li><a href="#" id="editPwd"><i class="fa fa-edit fa-fw"></i> 修改密码</a><span class="arrowUp top"></span></li>
+                            <li class="divider"></li>
+                            <li><a href="#" id="personCenter"><i class="fa fa-user fa-fw"></i> 个人中心</a><span class="arrowUp top"></span></li>
+                            <li class="divider"></li>
+                            <li><a href="#" id="logout"  v-on:click="logout"><i class="fa fa-sign-out fa-fw"></i> 退出</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div style="width:100%;">
+        <div id="leftMenu" class="leftMenu">
+            <ul  v-for="(item,index) in menusData">
+                <a id="accessAddress" :href="item.access"><li>{{item.name}}</li></a>
+            </ul>
+        </div>
+        <div id="tableList" class="contentCenter" style="float:right;">
+            <table class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th>选择</th>
+                    <th>课程名字</th>
+                    <th>课程内容</th>
+                    <th>授课老师</th>
+                    <th>学分</th>
+                    <th>上课时间</th>
+                    <th>上课地点</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="(item, index) in publicClass">
+                    <td>
+                        <input id="selectTag" type="radio" name="score"  v-model="classType" :value="item.name"/>
+                    </td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.content}}</td>
+                    <td>{{item.teacher}}</td>
+                    <td>{{item.score}}</td>
+                    <td>{{item.time}}</td>
+                    <td>{{item.address}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <button  type="button" class="btn btn-success pull-right" v-on:click="sureSelect">删除该课程</button>
+    </div>
+</div>
+
+<script src="javascripts/jquery.min.js"></script>
+<script src="javascripts/bootstrap.min.js"></script>
+<script src="javascripts/home.js"></script>
+<script src="javascripts/vue.js"></script>
+<script>
+    var personalCenter = new Vue({
+        el:'#personalCenter',
+        data:{
+            menusData:menus.data,
+            publicClass:publicClass.data,
+            classType: ''
+        },
+        methods:{
+            sureSelect: function () {
+                $.ajax({
+                    type:'POST',
+                    url:'/home/select',
+                    data:{
+                        selectTag: this.classType,
+                        username: JSON.parse(localStorage.getItem('username')).username
+                    },
+                    success:function(result){
+                        if(result.code == '200'){
+                            console.log('result', result);
+                            alert(result.msg);
+                        }
+                    },
+                    error:function(){
+                        $("#error").html("网络错误");
+                    },
+                    complete:function(){
+                        // console.log("complete");
+                    }
+                });
+            },
+            logout: function () {
+                localStorage.removeItem('username');
+                window.location = 'index' ;
+            }
+        }
+    });
+</script>
+</body>
+</html>

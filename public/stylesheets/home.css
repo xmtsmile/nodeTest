@@ -1,0 +1,24 @@
+/*覆盖bootstrap中的样式*/
+.navbar{
+    margin-bottom:0px;
+}
+
+/*home页面中的自定义样式*/
+.leftMenu{
+    width:12%;
+    background-color:#F8F8F8;
+    float:left;
+}
+.leftMenu ul li{
+    height:45px;
+    line-height:45px;
+    color:#777777;
+    padding-left:30px;
+}
+
+.leftMenu ul li：hover{
+    background-color:#EEEEEE;
+}
+.contentCenter{
+    width:88%;
+}
